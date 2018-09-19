@@ -24,8 +24,8 @@ struct ImageDisplay {
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
   
-  var textDetector: VisionTextDetector!
-  var cloudTextDetector: VisionCloudTextDetector!
+  var textRecognizer: VisionTextRecognizer!
+  var cloudTextRecognizer: VisionTextRecognizer!
   
   var frameSublayer = CALayer()
   
@@ -39,8 +39,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    textDetector = Vision().textDetector()
-    cloudTextDetector = Vision().cloudTextDetector()
+    textRecognizer = Vision.vision().onDeviceTextRecognizer()
+    cloudTextRecognizer = Vision.vision().cloudTextRecognizer()
     
     imageView.layer.addSublayer(frameSublayer)
     pickerView.dataSource = self
@@ -61,63 +61,60 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
   
   func runTextRecognition(with image: UIImage) {
     let visionImage = VisionImage(image: image)
-    textDetector.detect(in: visionImage) { features, error in
+    textRecognizer.process(visionImage, completion: { (features, error) in
       self.processResult(from: features, error: error)
-    }
+    })
   }
   
   func runCloudTextRecognition(with image: UIImage) {
     let visionImage = VisionImage(image: image)
-    cloudTextDetector.detect(in: visionImage) { features, error in
+    cloudTextRecognizer.process(visionImage, completion: { (features, error) in
       if let error = error {
         print("Received error: \(error)")
         return
       }
       
       self.processCloudResult(from: features, error: error)
-    }
+    })
   }
 
   
   // MARK: Image Drawing
   
-  func processResult(from text: [VisionText]?, error: Error?) {
+  func processResult(from text: VisionText?, error: Error?) {
     removeFrames()
     guard let features = text, let image = imageView.image else {
       return
     }
-    for text in features {
-      if let block = text as? VisionTextBlock {
-        for line in block.lines {
-          for element in line.elements {
-            self.addFrameView(
-              featureFrame: element.frame,
-              imageSize: image.size,
-              viewFrame: self.imageView.frame,
-              text: element.text
-            )
-          }
+    for block in features.blocks {
+      for line in block.lines {
+        for element in line.elements {
+          self.addFrameView(
+            featureFrame: element.frame,
+            imageSize: image.size,
+            viewFrame: self.imageView.frame,
+            text: element.text
+          )
         }
       }
     }
   }
 
   
-  func processCloudResult(from text: VisionCloudText?, error: Error?) {
+  func processCloudResult(from text: VisionText?, error: Error?) {
     removeFrames()
-    guard let features = text, let image = imageView.image, let pages = features.pages else {
+    guard let features = text, let image = imageView.image else {
       return
     }
-    for page in pages {
-      for block in page.blocks ?? []  {
-        for paragraph in block.paragraphs ?? [] {
-          for word in paragraph.words ?? [] {
-            self.addFrameView(
-              featureFrame: word.frame,
-              imageSize: image.size,
-              viewFrame: self.imageView.frame
-            )
-          }
+    for block in features.blocks {
+      for line in block.lines {
+        for word in line.elements {
+          self.addFrameView(
+            featureFrame: word.frame,
+            imageSize: image.size,
+            viewFrame: self.imageView.frame,
+            text: word.text
+          )
         }
       }
     }

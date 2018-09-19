@@ -64,12 +64,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
   
   // MARK: Image Drawing
   
-  func processResult(from text: [VisionText]?, error: Error?) {
+  func processResult(from text: VisionText?, error: Error?) {
     
   }
 
   
-  func processCloudResult(from text: VisionCloudText?, error: Error?) {
+  func processCloudResult(from text: VisionText?, error: Error?) {
     
   }
 
