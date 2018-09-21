@@ -69,11 +69,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
   }
 
   
-  func processCloudResult(from text: VisionText?, error: Error?) {
-    
-  }
-
-  
   /// Converts a feature frame to a frame UIView that is displayed over the image.
   ///
   /// - Parameters:

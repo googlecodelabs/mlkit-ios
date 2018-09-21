@@ -39,8 +39,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    textRecognizer = Vision.vision().onDeviceTextRecognizer()
-    cloudTextRecognizer = Vision.vision().cloudTextRecognizer()
+    let vision = Vision.vision()
+    textRecognizer = vision.onDeviceTextRecognizer()
+    cloudTextRecognizer = vision.cloudTextRecognizer()
     
     imageView.layer.addSublayer(frameSublayer)
     pickerView.dataSource = self
@@ -69,12 +70,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
   func runCloudTextRecognition(with image: UIImage) {
     let visionImage = VisionImage(image: image)
     cloudTextRecognizer.process(visionImage, completion: { (features, error) in
-      if let error = error {
-        print("Received error: \(error)")
-        return
-      }
-      
-      self.processCloudResult(from: features, error: error)
+      self.processResult(from: features, error: error)
     })
   }
 
@@ -94,26 +90,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             imageSize: image.size,
             viewFrame: self.imageView.frame,
             text: element.text
-          )
-        }
-      }
-    }
-  }
-
-  
-  func processCloudResult(from text: VisionText?, error: Error?) {
-    removeFrames()
-    guard let features = text, let image = imageView.image else {
-      return
-    }
-    for block in features.blocks {
-      for line in block.lines {
-        for word in line.elements {
-          self.addFrameView(
-            featureFrame: word.frame,
-            imageSize: image.size,
-            viewFrame: self.imageView.frame,
-            text: word.text
           )
         }
       }
