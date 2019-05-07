@@ -16,6 +16,7 @@
 
 import FirebaseMLVision
 import FirebaseMLModelInterpreter
+import FirebaseMLCommon
 
 class ViewController: UIViewController {
 
@@ -65,7 +66,7 @@ class ViewController: UIViewController {
         type: Constants.modelElementType,
         dimensions: outputDimensions
       )
-      let conditions = ModelDownloadConditions(isWiFiRequired: true, canDownloadInBackground: true)
+      let conditions = ModelDownloadConditions(allowsCellularAccess: true, allowsBackgroundDownloading: true)
       guard let localModelFilePath = Bundle.main.path(
         forResource: Constants.localModelFilename,
         ofType: Constants.modelExtension)
@@ -73,19 +74,19 @@ class ViewController: UIViewController {
           print("Failed to get the local model file path.")
           return nil
       }
-      let localModelSource = LocalModelSource(
-        modelName: Constants.localModelFilename,
+      let localModelSource = LocalModel(
+        name: Constants.localModelFilename,
         path: localModelFilePath
       )
-      let cloudModelSource = CloudModelSource(
-        modelName: Constants.hostedModelFilename,
-        enableModelUpdates: true,
+      let remoteModelSource = RemoteModel(
+        name: Constants.hostedModelFilename,
+        allowsModelUpdates: true,
         initialConditions: conditions,
         updateConditions: conditions
       )
       modelManager.register(localModelSource)
-      modelManager.register(cloudModelSource)
-      let modelOptions = ModelOptions(cloudModelName: Constants.hostedModelFilename, localModelName: Constants.localModelFilename)
+      modelManager.register(remoteModelSource)
+      let modelOptions = ModelOptions(remoteModelName: Constants.hostedModelFilename, localModelName: Constants.localModelFilename)
       return ModelInterpreter.modelInterpreter(options: modelOptions)
     } catch let error as NSError {
       print("Failed to load the model with error: \(error.localizedDescription)")
