@@ -13,12 +13,12 @@ The goal is to make it as easy as possible to integrate ML Kit into your app wit
 
 1. Clone this repo locally
   ```
-  git clone https://github.com/firebase/mlkit-material-ios
+  git clone https://github.com/googlecodelabs/mlkit-ios
   ```
 2. Find a `Podfile` in the folder and install all the dependency pods by running the following command:
   ```
-  cd mlkit-material-ios
-  cd TranslateDemo
+  cd mlkit-ios
+  cd translate
   pod cache clean --all
   pod install --repo-update
   ```
