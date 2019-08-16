@@ -14,9 +14,7 @@
 //  limitations under the License.
 //
 
-import FirebaseMLVision
-import FirebaseMLModelInterpreter
-import FirebaseMLCommon
+import Firebase
 
 class ViewController: UIViewController {
 
