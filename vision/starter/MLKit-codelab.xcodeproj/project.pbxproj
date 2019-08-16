@@ -17,6 +17,7 @@
 		10642C79217BFAC700D3F8EC /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C71217BFAC700D3F8EC /* grace_hopper.jpg */; };
 		10642C7B217D414400D3F8EC /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642C7A217D414400D3F8EC /* UIUtilities.swift */; };
 		10642C7F217D5E0000D3F8EC /* UIImage+TFLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642C7E217D5DFF00D3F8EC /* UIImage+TFLite.swift */; };
+		1E04E15CB2F2981E1E4D19DC /* Pods_MLKit_codelab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E57277C00ECEFE838F3619 /* Pods_MLKit_codelab.framework */; };
 		BB70D4DE209CF98500743DA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB70D4DD209CF98500743DA7 /* AppDelegate.swift */; };
 		BB70D4E0209CF98500743DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB70D4DF209CF98500743DA7 /* ViewController.swift */; };
 		BB70D4E3209CF98500743DA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB70D4E1209CF98500743DA7 /* Main.storyboard */; };
@@ -35,6 +36,9 @@
 		10642C71217BFAC700D3F8EC /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grace_hopper.jpg; sourceTree = "<group>"; };
 		10642C7A217D414400D3F8EC /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
 		10642C7E217D5DFF00D3F8EC /* UIImage+TFLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TFLite.swift"; sourceTree = "<group>"; };
+		16EE720B67684512C5B41850 /* Pods-MLKit-codelab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKit-codelab.debug.xcconfig"; path = "Target Support Files/Pods-MLKit-codelab/Pods-MLKit-codelab.debug.xcconfig"; sourceTree = "<group>"; };
+		29E57277C00ECEFE838F3619 /* Pods_MLKit_codelab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MLKit_codelab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9434DADCE1D613466EF28CF /* Pods-MLKit-codelab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKit-codelab.release.xcconfig"; path = "Target Support Files/Pods-MLKit-codelab/Pods-MLKit-codelab.release.xcconfig"; sourceTree = "<group>"; };
 		BB70D4DA209CF98500743DA7 /* MLKit-codelab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MLKit-codelab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB70D4DD209CF98500743DA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB70D4DF209CF98500743DA7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E04E15CB2F2981E1E4D19DC /* Pods_MLKit_codelab.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,12 +76,32 @@
 			path = ../starter/Resources;
 			sourceTree = "<group>";
 		};
+		4B58CD840F09F3C12D98CDF1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				16EE720B67684512C5B41850 /* Pods-MLKit-codelab.debug.xcconfig */,
+				A9434DADCE1D613466EF28CF /* Pods-MLKit-codelab.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		5F0D540D3F8CCE46D9560F32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29E57277C00ECEFE838F3619 /* Pods_MLKit_codelab.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BB70D4D1209CF98500743DA7 = {
 			isa = PBXGroup;
 			children = (
 				BB70D4DC209CF98500743DA7 /* MLKit-codelab */,
 				10642C69217BFAC700D3F8EC /* Resources */,
 				BB70D4DB209CF98500743DA7 /* Products */,
+				4B58CD840F09F3C12D98CDF1 /* Pods */,
+				5F0D540D3F8CCE46D9560F32 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +143,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB70D4EC209CF98500743DA7 /* Build configuration list for PBXNativeTarget "MLKit-codelab" */;
 			buildPhases = (
+				9B1F1413F458078124DD8966 /* [CP] Check Pods Manifest.lock */,
 				BB70D4D6209CF98500743DA7 /* Sources */,
 				BB70D4D7209CF98500743DA7 /* Frameworks */,
 				BB70D4D8209CF98500743DA7 /* Resources */,
@@ -185,6 +211,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9B1F1413F458078124DD8966 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MLKit-codelab-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BB70D4D6209CF98500743DA7 /* Sources */ = {
@@ -329,6 +380,7 @@
 		};
 		BB70D4ED209CF98500743DA7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16EE720B67684512C5B41850 /* Pods-MLKit-codelab.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -346,6 +398,7 @@
 		};
 		BB70D4EE209CF98500743DA7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9434DADCE1D613466EF28CF /* Pods-MLKit-codelab.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
