@@ -76,7 +76,7 @@ public class UIUtilities {
 
   public static func imageOrientation(
     fromDevicePosition devicePosition: AVCaptureDevice.Position = .back
-    ) -> UIImageOrientation {
+    ) -> UIImage.Orientation {
     var deviceOrientation = UIDevice.current.orientation
     if deviceOrientation == .faceDown || deviceOrientation == .faceUp ||
       deviceOrientation == .unknown {
@@ -93,11 +93,13 @@ public class UIUtilities {
       return devicePosition == .front ? .upMirrored : .down
     case .faceDown, .faceUp, .unknown:
       return .up
+    @unknown default:
+      return .up
     }
   }
 
   public static func visionImageOrientation(
-    from imageOrientation: UIImageOrientation
+    from imageOrientation: UIImage.Orientation
     ) -> VisionDetectorImageOrientation {
     switch imageOrientation {
     case .up:
@@ -116,6 +118,8 @@ public class UIUtilities {
       return .leftTop
     case .rightMirrored:
       return .rightBottom
+    @unknown default:
+      return .topLeft
     }
   }
 
@@ -131,6 +135,8 @@ public class UIUtilities {
       case .portraitUpsideDown:
         return .portraitUpsideDown
       case .portrait, .unknown:
+        return .portrait
+      @unknown default:
         return .portrait
       }
     }
