@@ -7,18 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10642C72217BFAC700D3F8EC /* nl2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6A217BFAC700D3F8EC /* nl2.jpg */; };
+		10642C73217BFAC700D3F8EC /* tennis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6B217BFAC700D3F8EC /* tennis.jpg */; };
+		10642C74217BFAC700D3F8EC /* labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6C217BFAC700D3F8EC /* labels.txt */; };
+		10642C75217BFAC700D3F8EC /* mountain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6D217BFAC700D3F8EC /* mountain.jpg */; };
+		10642C76217BFAC700D3F8EC /* mobilenet_v1.0_224_quant.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6E217BFAC700D3F8EC /* mobilenet_v1.0_224_quant.tflite */; };
+		10642C77217BFAC700D3F8EC /* Please_walk_on_the_grass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6F217BFAC700D3F8EC /* Please_walk_on_the_grass.jpg */; };
+		10642C78217BFAC700D3F8EC /* non-latin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C70217BFAC700D3F8EC /* non-latin.jpg */; };
+		10642C79217BFAC700D3F8EC /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C71217BFAC700D3F8EC /* grace_hopper.jpg */; };
 		10642C7B217D414400D3F8EC /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642C7A217D414400D3F8EC /* UIUtilities.swift */; };
 		10642C7F217D5E0000D3F8EC /* UIImage+TFLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642C7E217D5DFF00D3F8EC /* UIImage+TFLite.swift */; };
-		1AEA7B9CD53487B773BE4277 /* Pods_MLKit_codelab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550351B3FC1D216FDA5A213 /* Pods_MLKit_codelab.framework */; };
-		886081092306A94A00EE9685 /* mountain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 886081012306A94A00EE9685 /* mountain.jpg */; };
-		8860810A2306A94A00EE9685 /* tennis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 886081022306A94A00EE9685 /* tennis.jpg */; };
-		8860810B2306A94A00EE9685 /* mobilenet_v1.0_224_quant.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 886081032306A94A00EE9685 /* mobilenet_v1.0_224_quant.tflite */; };
-		8860810C2306A94A00EE9685 /* non-latin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 886081042306A94A00EE9685 /* non-latin.jpg */; };
-		8860810D2306A94A00EE9685 /* labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 886081052306A94A00EE9685 /* labels.txt */; };
-		8860810E2306A94A00EE9685 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 886081062306A94A00EE9685 /* grace_hopper.jpg */; };
-		8860810F2306A94A00EE9685 /* nl2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 886081072306A94A00EE9685 /* nl2.jpg */; };
-		886081102306A94A00EE9685 /* Please_walk_on_the_grass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 886081082306A94A00EE9685 /* Please_walk_on_the_grass.jpg */; };
-		886D7DEE2306A4F000EDD7BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 886D7DED2306A4F000EDD7BC /* GoogleService-Info.plist */; };
 		BB70D4DE209CF98500743DA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB70D4DD209CF98500743DA7 /* AppDelegate.swift */; };
 		BB70D4E0209CF98500743DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB70D4DF209CF98500743DA7 /* ViewController.swift */; };
 		BB70D4E3209CF98500743DA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB70D4E1209CF98500743DA7 /* Main.storyboard */; };
@@ -27,20 +25,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10642C6A217BFAC700D3F8EC /* nl2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nl2.jpg; sourceTree = "<group>"; };
+		10642C6B217BFAC700D3F8EC /* tennis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tennis.jpg; sourceTree = "<group>"; };
+		10642C6C217BFAC700D3F8EC /* labels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labels.txt; sourceTree = "<group>"; };
+		10642C6D217BFAC700D3F8EC /* mountain.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mountain.jpg; sourceTree = "<group>"; };
+		10642C6E217BFAC700D3F8EC /* mobilenet_v1.0_224_quant.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = mobilenet_v1.0_224_quant.tflite; sourceTree = "<group>"; };
+		10642C6F217BFAC700D3F8EC /* Please_walk_on_the_grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Please_walk_on_the_grass.jpg; sourceTree = "<group>"; };
+		10642C70217BFAC700D3F8EC /* non-latin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "non-latin.jpg"; sourceTree = "<group>"; };
+		10642C71217BFAC700D3F8EC /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grace_hopper.jpg; sourceTree = "<group>"; };
 		10642C7A217D414400D3F8EC /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
 		10642C7E217D5DFF00D3F8EC /* UIImage+TFLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TFLite.swift"; sourceTree = "<group>"; };
-		2F237BE6CB22C98181F67051 /* Pods-MLKit-codelab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKit-codelab.release.xcconfig"; path = "Target Support Files/Pods-MLKit-codelab/Pods-MLKit-codelab.release.xcconfig"; sourceTree = "<group>"; };
-		886081012306A94A00EE9685 /* mountain.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mountain.jpg; path = Resources/mountain.jpg; sourceTree = SOURCE_ROOT; };
-		886081022306A94A00EE9685 /* tennis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tennis.jpg; path = Resources/tennis.jpg; sourceTree = SOURCE_ROOT; };
-		886081032306A94A00EE9685 /* mobilenet_v1.0_224_quant.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; name = mobilenet_v1.0_224_quant.tflite; path = Resources/mobilenet_v1.0_224_quant.tflite; sourceTree = SOURCE_ROOT; };
-		886081042306A94A00EE9685 /* non-latin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "non-latin.jpg"; path = "Resources/non-latin.jpg"; sourceTree = SOURCE_ROOT; };
-		886081052306A94A00EE9685 /* labels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labels.txt; path = Resources/labels.txt; sourceTree = SOURCE_ROOT; };
-		886081062306A94A00EE9685 /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grace_hopper.jpg; path = Resources/grace_hopper.jpg; sourceTree = SOURCE_ROOT; };
-		886081072306A94A00EE9685 /* nl2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nl2.jpg; path = Resources/nl2.jpg; sourceTree = SOURCE_ROOT; };
-		886081082306A94A00EE9685 /* Please_walk_on_the_grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Please_walk_on_the_grass.jpg; path = Resources/Please_walk_on_the_grass.jpg; sourceTree = SOURCE_ROOT; };
-		886D7DED2306A4F000EDD7BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8C41E72CF08482E043AF4FDA /* Pods-MLKit-codelab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKit-codelab.debug.xcconfig"; path = "Target Support Files/Pods-MLKit-codelab/Pods-MLKit-codelab.debug.xcconfig"; sourceTree = "<group>"; };
-		9550351B3FC1D216FDA5A213 /* Pods_MLKit_codelab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MLKit_codelab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB70D4DA209CF98500743DA7 /* MLKit-codelab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MLKit-codelab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB70D4DD209CF98500743DA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB70D4DF209CF98500743DA7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,7 +49,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AEA7B9CD53487B773BE4277 /* Pods_MLKit_codelab.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,34 +58,17 @@
 		10642C69217BFAC700D3F8EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				886081062306A94A00EE9685 /* grace_hopper.jpg */,
-				886081052306A94A00EE9685 /* labels.txt */,
-				886081032306A94A00EE9685 /* mobilenet_v1.0_224_quant.tflite */,
-				886081012306A94A00EE9685 /* mountain.jpg */,
-				886081072306A94A00EE9685 /* nl2.jpg */,
-				886081042306A94A00EE9685 /* non-latin.jpg */,
-				886081082306A94A00EE9685 /* Please_walk_on_the_grass.jpg */,
-				886081022306A94A00EE9685 /* tennis.jpg */,
+				10642C6A217BFAC700D3F8EC /* nl2.jpg */,
+				10642C6B217BFAC700D3F8EC /* tennis.jpg */,
+				10642C6C217BFAC700D3F8EC /* labels.txt */,
+				10642C6D217BFAC700D3F8EC /* mountain.jpg */,
+				10642C6E217BFAC700D3F8EC /* mobilenet_v1.0_224_quant.tflite */,
+				10642C6F217BFAC700D3F8EC /* Please_walk_on_the_grass.jpg */,
+				10642C70217BFAC700D3F8EC /* non-latin.jpg */,
+				10642C71217BFAC700D3F8EC /* grace_hopper.jpg */,
 			);
 			name = Resources;
 			path = ../starter/Resources;
-			sourceTree = "<group>";
-		};
-		13B933B799E1DB1ABE3C5CDE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9550351B3FC1D216FDA5A213 /* Pods_MLKit_codelab.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		32B57148D56DDCCE4B9A3226 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8C41E72CF08482E043AF4FDA /* Pods-MLKit-codelab.debug.xcconfig */,
-				2F237BE6CB22C98181F67051 /* Pods-MLKit-codelab.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		BB70D4D1209CF98500743DA7 = {
@@ -101,8 +77,6 @@
 				BB70D4DC209CF98500743DA7 /* MLKit-codelab */,
 				10642C69217BFAC700D3F8EC /* Resources */,
 				BB70D4DB209CF98500743DA7 /* Products */,
-				32B57148D56DDCCE4B9A3226 /* Pods */,
-				13B933B799E1DB1ABE3C5CDE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,7 +91,6 @@
 		BB70D4DC209CF98500743DA7 /* MLKit-codelab */ = {
 			isa = PBXGroup;
 			children = (
-				886D7DED2306A4F000EDD7BC /* GoogleService-Info.plist */,
 				BB70D4DD209CF98500743DA7 /* AppDelegate.swift */,
 				BB70D4DF209CF98500743DA7 /* ViewController.swift */,
 				10642C7A217D414400D3F8EC /* UIUtilities.swift */,
@@ -145,12 +118,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB70D4EC209CF98500743DA7 /* Build configuration list for PBXNativeTarget "MLKit-codelab" */;
 			buildPhases = (
-				273551CD3AAD53029871A8DB /* [CP] Check Pods Manifest.lock */,
 				BB70D4D6209CF98500743DA7 /* Sources */,
 				BB70D4D7209CF98500743DA7 /* Frameworks */,
 				BB70D4D8209CF98500743DA7 /* Resources */,
-				7AFA57DD41ACA700201C656A /* [CP] Embed Pods Frameworks */,
-				FA27D344B7228D11236069F8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -169,11 +139,10 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 1030;
-				ORGANIZATIONNAME = "David East";
+				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
 					BB70D4D9209CF98500743DA7 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1030;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -201,103 +170,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8860810E2306A94A00EE9685 /* grace_hopper.jpg in Resources */,
-				8860810F2306A94A00EE9685 /* nl2.jpg in Resources */,
-				8860810A2306A94A00EE9685 /* tennis.jpg in Resources */,
-				8860810D2306A94A00EE9685 /* labels.txt in Resources */,
+				10642C77217BFAC700D3F8EC /* Please_walk_on_the_grass.jpg in Resources */,
+				10642C73217BFAC700D3F8EC /* tennis.jpg in Resources */,
+				10642C72217BFAC700D3F8EC /* nl2.jpg in Resources */,
 				BB70D4E8209CF98500743DA7 /* LaunchScreen.storyboard in Resources */,
-				886081092306A94A00EE9685 /* mountain.jpg in Resources */,
-				886D7DEE2306A4F000EDD7BC /* GoogleService-Info.plist in Resources */,
-				8860810C2306A94A00EE9685 /* non-latin.jpg in Resources */,
-				8860810B2306A94A00EE9685 /* mobilenet_v1.0_224_quant.tflite in Resources */,
+				10642C78217BFAC700D3F8EC /* non-latin.jpg in Resources */,
+				10642C79217BFAC700D3F8EC /* grace_hopper.jpg in Resources */,
 				BB70D4E5209CF98500743DA7 /* Assets.xcassets in Resources */,
-				886081102306A94A00EE9685 /* Please_walk_on_the_grass.jpg in Resources */,
+				10642C76217BFAC700D3F8EC /* mobilenet_v1.0_224_quant.tflite in Resources */,
+				10642C74217BFAC700D3F8EC /* labels.txt in Resources */,
+				10642C75217BFAC700D3F8EC /* mountain.jpg in Resources */,
 				BB70D4E3209CF98500743DA7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		273551CD3AAD53029871A8DB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MLKit-codelab-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7AFA57DD41ACA700201C656A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MLKit-codelab/Pods-MLKit-codelab-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MLKit-codelab/Pods-MLKit-codelab-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FA27D344B7228D11236069F8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MLKit-codelab/Pods-MLKit-codelab-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleMobileVision/GoogleMVFaceDetectorResources.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleMobileVision/GoogleMVTextDetectorResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMVFaceDetectorResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMVTextDetectorResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MLKit-codelab/Pods-MLKit-codelab-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BB70D4D6209CF98500743DA7 /* Sources */ = {
@@ -446,17 +333,15 @@
 		};
 		BB70D4ED209CF98500743DA7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C41E72CF08482E043AF4FDA /* Pods-MLKit-codelab.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/MLKit-codelab/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.codelab.mlkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dac40987-e637-434d-9b81-63d373eb4caa";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -465,17 +350,15 @@
 		};
 		BB70D4EE209CF98500743DA7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F237BE6CB22C98181F67051 /* Pods-MLKit-codelab.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/MLKit-codelab/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.codelab.mlkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dac40987-e637-434d-9b81-63d373eb4caa";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
