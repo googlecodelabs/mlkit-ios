@@ -40,8 +40,8 @@ extension UIImage {
     #if swift(>=4.2)
     return self.pngData() ?? self.jpegData(compressionQuality: Constants.jpegCompressionQuality)
     #else
-    return UIImagePNGRepresentation(self) ??
-      UIImageJPEGRepresentation(self, Constants.jpegCompressionQuality)
+    return self.pngData() ??
+      self.jpegData(compressionQuality: Constants.jpegCompressionQuality)
     #endif  // swift(>=4.2)
   }
 
@@ -85,7 +85,7 @@ extension UIImage {
       pixelIndex += 1
     }
 
-    let scaledImageData = Data(bytes: scaledBytes)
+    let scaledImageData = Data(scaledBytes)
     return scaledImageData
   }
 
