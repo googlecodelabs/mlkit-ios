@@ -215,30 +215,34 @@ class CameraViewController: UIViewController {
         self.detectedTextLabel.text = detection
       }
 
-      self.pendingRequestWorkItem?.cancel()
-
-      // Wrap our request in a work item
-      let requestWorkItem = DispatchWorkItem { [weak self] in
-
-        self?.languageId.identifyLanguage(for: block.text) { languageCode, error in
-          if let error = error {
-            print("Failed with error: \(error)")
-            return
-          }
-          guard let languageCode = languageCode else {
-            print("No language was identified.")
-            return
-          }
-          self?.translate(detection, in: languageCode)
-        }
-      }
-
-      // Save the new work item and execute it after 50 ms
-      self.pendingRequestWorkItem = requestWorkItem
-      DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50),
-                                    execute: requestWorkItem)
+      self.identifyLanguage(for: detection)
     }
     group.wait()
+  }
+
+  private func identifyLanguage(for text: String) {
+    self.pendingRequestWorkItem?.cancel()
+
+    // Wrap our request in a work item
+    let requestWorkItem = DispatchWorkItem { [weak self] in
+
+      self?.languageId.identifyLanguage(for: text) { languageCode, error in
+        if let error = error {
+          print("Failed with error: \(error)")
+          return
+        }
+        guard let languageCode = languageCode else {
+          print("No language was identified.")
+          return
+        }
+        self?.translate(text, in: languageCode)
+      }
+    }
+
+    // Save the new work item and execute it after 50 ms
+    self.pendingRequestWorkItem = requestWorkItem
+    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50),
+                                  execute: requestWorkItem)
   }
 
   private func translate(_ text: String, in languageCode:String) {

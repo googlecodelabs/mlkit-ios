@@ -55,6 +55,9 @@ class CameraViewController: UIViewController {
   private func recognizeTextOnDevice(in image: VisionImage) {
   }
 
+  private func identifyLanguage(for text: String) {
+  }
+
   func updateTranslator() {
   }
 
