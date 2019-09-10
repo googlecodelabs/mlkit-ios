@@ -343,7 +343,6 @@ extension CameraViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     selectedItem = indexPath.item
     collectionView.performBatchUpdates(nil, completion: nil)
-    updateTranslator()
     translate(self.detectedText)
   }
 
