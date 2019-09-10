@@ -1,0 +1,18 @@
+platform :ios, '9.0'
+use_frameworks!
+
+pod 'Firebase/Analytics'
+pod 'Firebase/MLVision'
+pod 'Firebase/MLVisionTextModel'
+pod 'Firebase/MLNLLanguageID'
+pod 'Firebase/MLNLTranslate'
+pod 'FirebaseMLCommon', '0.17.0'
+pod 'MaterialComponents/List'
+pod 'MaterialComponents/AppBar'
+pod 'MaterialComponents/Chips'
+pod 'MaterialComponents/Chips+ChipThemer'
+pod 'MaterialComponents'
+
+target 'TranslateDemo' do
+end
+
