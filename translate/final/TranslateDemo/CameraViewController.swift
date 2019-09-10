@@ -184,12 +184,6 @@ class CameraViewController: UIViewController {
     chip?.setInkColor(backgroundColor, for: .normal)
   }
 
-  // use default values for arguments
-  func updateTranslator() {
-    let options = TranslatorOptions(sourceLanguage: detectedLanguage, targetLanguage: TranslateLanguage(rawValue: UInt(recentOutputLanguageIndexes[selectedItem]))!)
-    translator = NaturalLanguage.naturalLanguage().translator(options: options)
-  }
-
   private func recognizeTextOnDevice(in image: VisionImage) {
     let textRecognizer = vision.onDeviceTextRecognizer()
     let group = DispatchGroup()
@@ -225,7 +219,6 @@ class CameraViewController: UIViewController {
 
     // Wrap our request in a work item
     let requestWorkItem = DispatchWorkItem { [weak self] in
-
       self?.languageId.identifyLanguage(for: text) { languageCode, error in
         if let error = error {
           print("Failed with error: \(error)")
@@ -235,7 +228,17 @@ class CameraViewController: UIViewController {
           print("No language was identified.")
           return
         }
-        self?.translate(text, in: languageCode)
+        let detectedLanguage = TranslateLanguage.fromLanguageCode(languageCode)
+        if detectedLanguage == .invalid {
+          return
+        }
+        if detectedLanguage != self?.detectedLanguage {
+          self?.detectedLanguage = detectedLanguage
+          DispatchQueue.main.async {
+            self?.detectedLanguageLabel.text = LanguageNames[Int(detectedLanguage.rawValue)]
+          }
+        }
+        self?.translate(text)
       }
     }
 
@@ -245,22 +248,10 @@ class CameraViewController: UIViewController {
                                   execute: requestWorkItem)
   }
 
-  private func translate(_ text: String, in languageCode:String) {
-    let detectedLanguage = TranslateLanguage.fromLanguageCode(languageCode)
-    if detectedLanguage == .invalid {
-      return
-    }
-    if detectedLanguage != self.detectedLanguage {
-      self.detectedLanguage = detectedLanguage
-      DispatchQueue.main.async {
-        self.detectedLanguageLabel.text = LanguageNames[Int(detectedLanguage.rawValue)]
-      }
-    }
-    self.updateTranslator()
-    self.translate(text)
-  }
-
   func translate(_ inputText: String) {
+    let options = TranslatorOptions(sourceLanguage: detectedLanguage, targetLanguage: TranslateLanguage(rawValue: UInt(recentOutputLanguageIndexes[selectedItem]))!)
+    translator = NaturalLanguage.naturalLanguage().translator(options: options)
+
     let translatorForDownloading = self.translator!
     translatorForDownloading.downloadModelIfNeeded { error in
       guard error == nil else {
@@ -432,7 +423,6 @@ extension CameraViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     selectedItem = indexPath.item
     collectionView.performBatchUpdates(nil, completion: nil)
-    updateTranslator()
     translate(self.detectedText)
   }
 

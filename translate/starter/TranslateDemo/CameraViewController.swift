@@ -58,12 +58,6 @@ class CameraViewController: UIViewController {
   private func identifyLanguage(for text: String) {
   }
 
-  func updateTranslator() {
-  }
-
-  private func translate(_ text: String, in languageCode:String) {
-  }
-
   func translate(_ inputText: String) {
   }
 
