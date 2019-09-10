@@ -15,7 +15,7 @@
 //
 
 import MaterialComponents.MaterialList
-import FirebaseMLNLTranslate
+import Firebase
 
 private let reuseIdentifier = "Cell"
 

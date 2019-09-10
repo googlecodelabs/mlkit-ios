@@ -15,8 +15,7 @@
 //
 
 import CoreGraphics
-import UIKit
-import FirebaseMLNLTranslate
+import Firebase
 
 // MARK: - UIImage
 

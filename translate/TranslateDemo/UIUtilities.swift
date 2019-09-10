@@ -15,9 +15,7 @@
 //
 
 import AVFoundation
-import UIKit
-
-import FirebaseMLVision
+import Firebase
 
 
 /// Defines UI-related utilitiy methods for vision detection.

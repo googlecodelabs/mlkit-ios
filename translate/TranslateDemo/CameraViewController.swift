@@ -17,11 +17,7 @@
 import AVFoundation
 import CoreVideo
 
-
-import FirebaseMLVision
-import FirebaseMLCommon
-import FirebaseMLNLLanguageID
-import FirebaseMLNLTranslate
+import Firebase
 import MaterialComponents
 
 let LanguageNames = ["Afrikaans", "Arabic", "Belarusian", "Bulgarian", "Bengali", "Catalan",
