@@ -1,20 +1,17 @@
-Codelabs for ML Kit for Firebase
+Codelabs for ML Kit
 ============
 
-This repository contains a codelabs for ML Kit for Firebase:
+This repository contains a codelabs for ML Kit:
 
 * Detect text in images
 * Detect faces and face contour in images
-* Identify objects in images using custom machine learning models
 
 Introduction
 ------------
 
 In these codelabs, you will build an iOS app that uses various features
-of ML Kit for Firebase to recognize text, face contours and identify objects in images. You
-will learn how to use both the built in on-device and cloud Text Recognition APIs,
-Face Contour Detection APIs,
-and how to use your own Tensor Flow Lite custom models with ML Kit.
+of ML Kit to recognize text and face contours. You will learn how to use the built in on-device Text Recognition and
+Face Contour Detection APIs.
 
 Pre-requisites
 --------------
@@ -33,10 +30,10 @@ Screenshots
 Support
 -------
 
-* Stack Overflow: <http://stackoverflow.com/questions/tagged/mlkit>
+* Stack Overflow: <http://stackoverflow.com/questions/tagged/google-mlkit>
 
 If you've found an error in this sample, please file an issue:
-<https://github.com/googlecodelabs/ml-kit/issues>
+<https://github.com/googlecodelabs/mlkit-ios/issues>
 
 Patches are encouraged, and may be submitted by forking this project and
 submitting a pull request through GitHub.
