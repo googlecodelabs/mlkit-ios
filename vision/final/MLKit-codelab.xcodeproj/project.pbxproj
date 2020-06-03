@@ -7,16 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10642C72217BFAC700D3F8EC /* nl2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6A217BFAC700D3F8EC /* nl2.jpg */; };
-		10642C73217BFAC700D3F8EC /* tennis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6B217BFAC700D3F8EC /* tennis.jpg */; };
-		10642C74217BFAC700D3F8EC /* labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6C217BFAC700D3F8EC /* labels.txt */; };
-		10642C75217BFAC700D3F8EC /* mountain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6D217BFAC700D3F8EC /* mountain.jpg */; };
-		10642C76217BFAC700D3F8EC /* mobilenet_v1.0_224_quant.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6E217BFAC700D3F8EC /* mobilenet_v1.0_224_quant.tflite */; };
-		10642C77217BFAC700D3F8EC /* Please_walk_on_the_grass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C6F217BFAC700D3F8EC /* Please_walk_on_the_grass.jpg */; };
-		10642C78217BFAC700D3F8EC /* non-latin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C70217BFAC700D3F8EC /* non-latin.jpg */; };
 		10642C79217BFAC700D3F8EC /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10642C71217BFAC700D3F8EC /* grace_hopper.jpg */; };
 		10642C7B217D414400D3F8EC /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642C7A217D414400D3F8EC /* UIUtilities.swift */; };
-		10642C7F217D5E0000D3F8EC /* UIImage+TFLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642C7E217D5DFF00D3F8EC /* UIImage+TFLite.swift */; };
+		1B53A580248094CF00189BC4 /* Please_walk_on_the_grass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B53A57F248094CE00189BC4 /* Please_walk_on_the_grass.jpg */; };
 		BB70D4DE209CF98500743DA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB70D4DD209CF98500743DA7 /* AppDelegate.swift */; };
 		BB70D4E0209CF98500743DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB70D4DF209CF98500743DA7 /* ViewController.swift */; };
 		BB70D4E3209CF98500743DA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB70D4E1209CF98500743DA7 /* Main.storyboard */; };
@@ -25,16 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		10642C6A217BFAC700D3F8EC /* nl2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nl2.jpg; sourceTree = "<group>"; };
-		10642C6B217BFAC700D3F8EC /* tennis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tennis.jpg; sourceTree = "<group>"; };
-		10642C6C217BFAC700D3F8EC /* labels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labels.txt; sourceTree = "<group>"; };
-		10642C6D217BFAC700D3F8EC /* mountain.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mountain.jpg; sourceTree = "<group>"; };
-		10642C6E217BFAC700D3F8EC /* mobilenet_v1.0_224_quant.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = mobilenet_v1.0_224_quant.tflite; sourceTree = "<group>"; };
-		10642C6F217BFAC700D3F8EC /* Please_walk_on_the_grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Please_walk_on_the_grass.jpg; sourceTree = "<group>"; };
-		10642C70217BFAC700D3F8EC /* non-latin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "non-latin.jpg"; sourceTree = "<group>"; };
 		10642C71217BFAC700D3F8EC /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grace_hopper.jpg; sourceTree = "<group>"; };
 		10642C7A217D414400D3F8EC /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
-		10642C7E217D5DFF00D3F8EC /* UIImage+TFLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TFLite.swift"; sourceTree = "<group>"; };
+		1B53A57F248094CE00189BC4 /* Please_walk_on_the_grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Please_walk_on_the_grass.jpg; sourceTree = "<group>"; };
 		BB70D4DA209CF98500743DA7 /* MLKit-codelab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MLKit-codelab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB70D4DD209CF98500743DA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB70D4DF209CF98500743DA7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +31,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BB70D4D7209CF98500743DA7 /* Frameworks */ = {
+		C311EA74D989B49F18E635BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,13 +44,7 @@
 		10642C69217BFAC700D3F8EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				10642C6A217BFAC700D3F8EC /* nl2.jpg */,
-				10642C6B217BFAC700D3F8EC /* tennis.jpg */,
-				10642C6C217BFAC700D3F8EC /* labels.txt */,
-				10642C6D217BFAC700D3F8EC /* mountain.jpg */,
-				10642C6E217BFAC700D3F8EC /* mobilenet_v1.0_224_quant.tflite */,
-				10642C6F217BFAC700D3F8EC /* Please_walk_on_the_grass.jpg */,
-				10642C70217BFAC700D3F8EC /* non-latin.jpg */,
+				1B53A57F248094CE00189BC4 /* Please_walk_on_the_grass.jpg */,
 				10642C71217BFAC700D3F8EC /* grace_hopper.jpg */,
 			);
 			name = Resources;
@@ -94,7 +74,6 @@
 				BB70D4DD209CF98500743DA7 /* AppDelegate.swift */,
 				BB70D4DF209CF98500743DA7 /* ViewController.swift */,
 				10642C7A217D414400D3F8EC /* UIUtilities.swift */,
-				10642C7E217D5DFF00D3F8EC /* UIImage+TFLite.swift */,
 				BB70D4F1209D000A00743DA7 /* Supporting Files */,
 				BB70D4E9209CF98500743DA7 /* Info.plist */,
 			);
@@ -119,8 +98,8 @@
 			buildConfigurationList = BB70D4EC209CF98500743DA7 /* Build configuration list for PBXNativeTarget "MLKit-codelab" */;
 			buildPhases = (
 				BB70D4D6209CF98500743DA7 /* Sources */,
-				BB70D4D7209CF98500743DA7 /* Frameworks */,
 				BB70D4D8209CF98500743DA7 /* Resources */,
+				C311EA74D989B49F18E635BE /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -143,7 +122,7 @@
 				TargetAttributes = {
 					BB70D4D9209CF98500743DA7 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -170,16 +149,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10642C77217BFAC700D3F8EC /* Please_walk_on_the_grass.jpg in Resources */,
-				10642C73217BFAC700D3F8EC /* tennis.jpg in Resources */,
-				10642C72217BFAC700D3F8EC /* nl2.jpg in Resources */,
 				BB70D4E8209CF98500743DA7 /* LaunchScreen.storyboard in Resources */,
-				10642C78217BFAC700D3F8EC /* non-latin.jpg in Resources */,
 				10642C79217BFAC700D3F8EC /* grace_hopper.jpg in Resources */,
 				BB70D4E5209CF98500743DA7 /* Assets.xcassets in Resources */,
-				10642C76217BFAC700D3F8EC /* mobilenet_v1.0_224_quant.tflite in Resources */,
-				10642C74217BFAC700D3F8EC /* labels.txt in Resources */,
-				10642C75217BFAC700D3F8EC /* mountain.jpg in Resources */,
+				1B53A580248094CF00189BC4 /* Please_walk_on_the_grass.jpg in Resources */,
 				BB70D4E3209CF98500743DA7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,7 +165,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB70D4E0209CF98500743DA7 /* ViewController.swift in Sources */,
-				10642C7F217D5E0000D3F8EC /* UIImage+TFLite.swift in Sources */,
 				10642C7B217D414400D3F8EC /* UIUtilities.swift in Sources */,
 				BB70D4DE209CF98500743DA7 /* AppDelegate.swift in Sources */,
 			);
@@ -276,6 +248,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -328,6 +301,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};
@@ -335,16 +309,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/MLKit-codelab/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.codelab.mlkit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.mlkit.codelab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -352,16 +328,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/MLKit-codelab/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.codelab.mlkit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.mlkit.codelab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};

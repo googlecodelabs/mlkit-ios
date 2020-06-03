@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2018 Google Inc.
+//  Copyright (c) 2020 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,7 +14,10 @@
 //  limitations under the License.
 //
 
-import Firebase
+import MLKitFaceDetection
+import MLKitTextRecognition
+import MLKitVision
+import UIKit
 
 class ViewController: UIViewController {
 
@@ -30,32 +33,16 @@ class ViewController: UIViewController {
   }()
 
   private lazy var resultsAlertController: UIAlertController = {
-    let alertController = UIAlertController(title: "Detection Results",
-                                            message: nil,
-                                            preferredStyle: .actionSheet)
-    alertController.addAction(UIAlertAction(title: "OK", style: .destructive) { _ in
-      alertController.dismiss(animated: true, completion: nil)
-    })
+    let alertController = UIAlertController(
+      title: "Detection Results",
+      message: nil,
+      preferredStyle: .actionSheet)
+    alertController.addAction(
+      UIAlertAction(title: "OK", style: .destructive) { _ in
+        alertController.dismiss(animated: true, completion: nil)
+      })
     return alertController
   }()
-
-  private lazy var labels: [String] = {
-    let encoding = String.Encoding.utf8.rawValue
-    guard let labelsFilePath = Bundle.main.path(
-      forResource: Constants.labelsFilename,
-      ofType: Constants.labelsExtension)
-      else {
-        print("Failed to get the labels file path.")
-        return []
-    }
-    let contents = try! NSString(contentsOfFile: labelsFilePath, encoding: encoding)
-    return contents.components(separatedBy: Constants.labelsSeparator)
-  }()
-
-  private lazy var outputDimensions = [
-    Constants.dimensionBatchSize,
-    NSNumber(value: labels.count),
-    ]
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -66,7 +53,7 @@ class ViewController: UIViewController {
       annotationOverlayView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
       annotationOverlayView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
       annotationOverlayView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-      ])
+    ])
     pickerView.dataSource = self
     pickerView.delegate = self
     pickerView.selectRow(0, inComponent: 0, animated: false)
@@ -78,16 +65,8 @@ class ViewController: UIViewController {
     runTextRecognition(with: imageView.image!)
   }
 
-  @IBAction func findTextCloudDidTouch(_ sender: UIButton) {
-    runCloudTextRecognition(with: imageView.image!)
-  }
-
   @IBAction func findFaceContourDidTouch(_ sender: UIButton) {
     runFaceContourDetection(with: imageView.image!)
-  }
-
-  @IBAction func findObjectsDidTouch(_ sender: UIButton) {
-    runModelInference(with: imageView.image!)
   }
 
   // MARK: Text Recognition
@@ -96,17 +75,7 @@ class ViewController: UIViewController {
 
   }
 
-  func processResult(from text: VisionText?, error: Error?) {
-
-  }
-
-  // MARK: Cloud Text Recognition
-
-  func runCloudTextRecognition(with image: UIImage) {
-
-  }
-
-  func processResult(from text: VisionDocumentText?, error: Error?) {
+  func processResult(from text: Text?, error: Error?) {
 
   }
 
@@ -116,21 +85,11 @@ class ViewController: UIViewController {
 
   }
 
-  func processResult(from faces: [VisionFace]?, error: Error?) {
+  func processResult(from faces: [Face]?, error: Error?) {
 
   }
 
-  private func addContours(forFace face: VisionFace, transform: CGAffineTransform) {
-
-  }
-
-  // MARK: Custom Model
-
-  private func runModelInference(with image: UIImage) {
-
-  }
-
-  private func process(_ outputs: ModelOutputs) {
+  private func addContours(forFace face: Face, transform: CGAffineTransform) {
 
   }
 
@@ -144,28 +103,11 @@ class ViewController: UIViewController {
       }
     }
     resultsAlertController.message = resultsText
-    resultsAlertController.popoverPresentationController?.sourceRect = self.annotationOverlayView.frame
+    resultsAlertController.popoverPresentationController?.sourceRect =
+      self.annotationOverlayView.frame
     resultsAlertController.popoverPresentationController?.sourceView = self.annotationOverlayView
     present(resultsAlertController, animated: true, completion: nil)
     print(resultsText)
-  }
-
-  private func scaledImageData(
-    from image: UIImage,
-    componentsCount: Int = Constants.dimensionComponents.intValue
-    ) -> Data? {
-    let imageWidth = Constants.dimensionImageWidth.doubleValue
-    let imageHeight = Constants.dimensionImageHeight.doubleValue
-    let imageSize = CGSize(width: imageWidth, height: imageHeight)
-    guard let scaledImageData = image.scaledImageData(
-      with: imageSize,
-      componentsCount: componentsCount,
-      batchSize: Constants.dimensionBatchSize.intValue)
-      else {
-        print("Failed to scale image to size: \(imageSize).")
-        return nil
-    }
-    return scaledImageData
   }
 
   private func drawFrame(_ frame: CGRect, in color: UIColor, transform: CGAffineTransform) {
@@ -177,15 +119,16 @@ class ViewController: UIViewController {
     )
   }
 
-  private func drawPoint(_ point: VisionPoint, in color: UIColor, transform: CGAffineTransform) {
-    let transformedPoint = pointFrom(point).applying(transform);
-    UIUtilities.addCircle(atPoint: transformedPoint,
-                          to: annotationOverlayView,
-                          color: color,
-                          radius: Constants.smallDotRadius)
+  private func drawPoint(_ point: FacePoint, in color: UIColor, transform: CGAffineTransform) {
+    let transformedPoint = pointFrom(point).applying(transform)
+    UIUtilities.addCircle(
+      atPoint: transformedPoint,
+      to: annotationOverlayView,
+      color: color,
+      radius: Constants.smallDotRadius)
   }
 
-  private func pointFrom(_ visionPoint: VisionPoint) -> CGPoint {
+  private func pointFrom(_ visionPoint: FacePoint) -> CGPoint {
     return CGPoint(x: CGFloat(visionPoint.x.floatValue), y: CGFloat(visionPoint.y.floatValue))
   }
 
@@ -198,9 +141,9 @@ class ViewController: UIViewController {
 
     let imageViewAspectRatio = imageViewWidth / imageViewHeight
     let imageAspectRatio = imageWidth / imageHeight
-    let scale = (imageViewAspectRatio > imageAspectRatio) ?
-      imageViewHeight / imageHeight :
-      imageViewWidth / imageWidth
+    let scale =
+      (imageViewAspectRatio > imageAspectRatio)
+      ? imageViewHeight / imageHeight : imageViewWidth / imageWidth
 
     // Image view's `contentMode` is `scaleAspectFit`, which scales the image to fit the size of the
     // image view by maintaining the aspect ratio. Multiple by `scale` to get image's original size.
@@ -232,7 +175,9 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     return Constants.images.count
   }
 
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int)
+    -> String?
+  {
     return Constants.images[row].name
   }
 
@@ -242,7 +187,6 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     imageView.image = UIImage(named: imageDisplay.file)
   }
 }
-
 
 // MARK: - Fileprivate
 
@@ -254,35 +198,10 @@ fileprivate enum Constants {
   static let largeDotRadius: CGFloat = 10.0
   static let detectionNoResultsMessage = "No results returned."
   static let failedToDetectObjectsMessage = "Failed to detect objects in image."
-  static let labelsFilename = "labels"
-  static let labelsExtension = "txt"
-  static let labelsSeparator = "\n"
-  static let modelExtension = "tflite"
-  static let dimensionBatchSize: NSNumber = 1
-  static let dimensionImageWidth: NSNumber = 224
-  static let dimensionImageHeight: NSNumber = 224
-  static let dimensionComponents: NSNumber = 3
-  static let modelInputIndex: UInt = 0
-  static let localModelFilename = "mobilenet_v1.0_224_quant"
-  static let hostedModelFilename = "mobilenet_v1_224_quant"
-  static let maxRGBValue: Float32 = 255.0
-  static let topResultsCount: Int = 5
-  static let inputDimensions = [
-    dimensionBatchSize,
-    dimensionImageWidth,
-    dimensionImageHeight,
-    dimensionComponents,
-    ]
-  static let modelElementType: ModelElementType = .uInt8
-
   static let images = [
     ImageDisplay(file: "Please_walk_on_the_grass.jpg", name: "Image 1"),
-    ImageDisplay(file: "non-latin.jpg", name: "Image 2"),
-    ImageDisplay(file: "nl2.jpg", name: "Image 3"),
-    ImageDisplay(file: "grace_hopper.jpg", name: "Image 4"),
-    ImageDisplay(file: "tennis.jpg", name: "Image 5"),
-    ImageDisplay(file: "mountain.jpg", name: "Image 6"),
-    ]
+    ImageDisplay(file: "grace_hopper.jpg", name: "Image 2"),
+  ]
 }
 
 struct ImageDisplay {

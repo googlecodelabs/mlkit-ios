@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2018 Google Inc.
+//  Copyright (c) 2020 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,7 +14,10 @@
 //  limitations under the License.
 //
 
-import Firebase
+import MLKitFaceDetection
+import MLKitTextRecognition
+import MLKitVision
+import UIKit
 
 class ViewController: UIViewController {
 
@@ -30,85 +33,25 @@ class ViewController: UIViewController {
   }()
 
   private lazy var resultsAlertController: UIAlertController = {
-    let alertController = UIAlertController(title: "Detection Results",
-                                            message: nil,
-                                            preferredStyle: .actionSheet)
-    alertController.addAction(UIAlertAction(title: "OK", style: .destructive) { _ in
-      alertController.dismiss(animated: true, completion: nil)
-    })
+    let alertController = UIAlertController(
+      title: "Detection Results",
+      message: nil,
+      preferredStyle: .actionSheet)
+    alertController.addAction(
+      UIAlertAction(title: "OK", style: .destructive) { _ in
+        alertController.dismiss(animated: true, completion: nil)
+      })
     return alertController
   }()
 
-  private lazy var vision = Vision.vision()
-  private lazy var textRecognizer = vision.onDeviceTextRecognizer()
-  private lazy var cloudDocumentTextRecognizer = vision.cloudDocumentTextRecognizer()
-  private lazy var faceDetectorOption: VisionFaceDetectorOptions = {
-    let option = VisionFaceDetectorOptions()
+  private lazy var textRecognizer = TextRecognizer.textRecognizer()
+
+  private lazy var faceDetectorOption: FaceDetectorOptions = {
+    let option = FaceDetectorOptions()
     option.contourMode = .all
-    option.performanceMode = .fast
     return option
   }()
-  private lazy var faceDetector = vision.faceDetector(options: faceDetectorOption)
-
-  private let modelInputOutputOptions = ModelInputOutputOptions()
-  private lazy var modelManager = ModelManager.modelManager()
-  private lazy var modelInterpreter: ModelInterpreter? = {
-    do {
-      try modelInputOutputOptions.setInputFormat(
-        index: Constants.modelInputIndex,
-        type: Constants.modelElementType,
-        dimensions: Constants.inputDimensions
-      )
-      try modelInputOutputOptions.setOutputFormat(
-        index: Constants.modelInputIndex,
-        type: Constants.modelElementType,
-        dimensions: outputDimensions
-      )
-      let conditions = ModelDownloadConditions(allowsCellularAccess: true, allowsBackgroundDownloading: true)
-      guard let localModelFilePath = Bundle.main.path(
-        forResource: Constants.localModelFilename,
-        ofType: Constants.modelExtension)
-        else {
-          print("Failed to get the local model file path.")
-          return nil
-      }
-      let localModelSource = LocalModel(
-        name: Constants.localModelFilename,
-        path: localModelFilePath
-      )
-      let remoteModelSource = RemoteModel(
-        name: Constants.hostedModelFilename,
-        allowsModelUpdates: true,
-        initialConditions: conditions,
-        updateConditions: conditions
-      )
-      modelManager.register(localModelSource)
-      modelManager.register(remoteModelSource)
-      let modelOptions = ModelOptions(remoteModelName: Constants.hostedModelFilename, localModelName: Constants.localModelFilename)
-      return ModelInterpreter.modelInterpreter(options: modelOptions)
-    } catch let error as NSError {
-      print("Failed to load the model with error: \(error.localizedDescription)")
-      return nil
-    }
-  }()
-
-  private lazy var labels: [String] = {
-    let encoding = String.Encoding.utf8.rawValue
-    guard let labelsFilePath = Bundle.main.path(
-      forResource: Constants.labelsFilename,
-      ofType: Constants.labelsExtension)
-      else {
-        print("Failed to get the labels file path.")
-        return []
-    }
-    let contents = try! NSString(contentsOfFile: labelsFilePath, encoding: encoding)
-    return contents.components(separatedBy: Constants.labelsSeparator)
-  }()
-
-  private lazy var outputDimensions = [
-    Constants.dimensionBatchSize,
-    NSNumber(value: labels.count),
-    ]
+  private lazy var faceDetector = FaceDetector.faceDetector(options: faceDetectorOption)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -119,7 +62,7 @@ class ViewController: UIViewController {
       annotationOverlayView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
       annotationOverlayView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
       annotationOverlayView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-      ])
+    ])
     pickerView.dataSource = self
     pickerView.delegate = self
     pickerView.selectRow(0, inComponent: 0, animated: false)
@@ -131,16 +74,8 @@ class ViewController: UIViewController {
     runTextRecognition(with: imageView.image!)
   }
 
-  @IBAction func findTextCloudDidTouch(_ sender: UIButton) {
-    runCloudTextRecognition(with: imageView.image!)
-  }
-
   @IBAction func findFaceContourDidTouch(_ sender: UIButton) {
     runFaceContourDetection(with: imageView.image!)
-  }
-
-  @IBAction func findObjectsDidTouch(_ sender: UIButton) {
-    runModelInference(with: imageView.image!)
   }
 
   // MARK: Text Recognition
@@ -152,7 +87,7 @@ class ViewController: UIViewController {
     }
   }
 
-  func processResult(from text: VisionText?, error: Error?) {
+  func processResult(from text: Text?, error: Error?) {
     removeDetectionAnnotations()
     guard error == nil, let text = text else {
       let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
@@ -184,52 +119,6 @@ class ViewController: UIViewController {
     }
   }
 
-  // MARK: Cloud Text Recognition
-
-  func runCloudTextRecognition(with image: UIImage) {
-    let visionImage = VisionImage(image: image)
-    cloudDocumentTextRecognizer.process(visionImage) { features, error in
-      self.processResult(from: features, error: error)
-    }
-  }
-
-  func processResult(from text: VisionDocumentText?, error: Error?) {
-    removeDetectionAnnotations()
-    guard error == nil, let text = text else {
-      let errorString = error?.localizedDescription ?? Constants.detectionNoResultsMessage
-      print("Document text recognizer failed with error: \(errorString)")
-      return
-    }
-
-    let transform = self.transformMatrix()
-
-    // Blocks.
-    for block in text.blocks {
-      drawFrame(block.frame, in: .purple, transform: transform)
-
-      // Paragraphs.
-      for paragraph in block.paragraphs {
-        drawFrame(paragraph.frame, in: .orange, transform: transform)
-
-        // Words.
-        for word in paragraph.words {
-          drawFrame(word.frame, in: .green, transform: transform)
-
-          // Symbols.
-          for symbol in word.symbols {
-            drawFrame(symbol.frame, in: .cyan, transform: transform)
-
-            let transformedRect = symbol.frame.applying(transform)
-            let label = UILabel(frame: transformedRect)
-            label.text = symbol.text
-            label.adjustsFontSizeToFitWidth = true
-            self.annotationOverlayView.addSubview(label)
-          }
-        }
-      }
-    }
-  }
-
   // MARK: Face Contour Detection
 
   func runFaceContourDetection(with image: UIImage) {
@@ -239,7 +128,7 @@ class ViewController: UIViewController {
     }
   }
 
-  func processResult(from faces: [VisionFace]?, error: Error?) {
+  func processResult(from faces: [Face]?, error: Error?) {
     removeDetectionAnnotations()
     guard let faces = faces else {
       return
@@ -257,7 +146,7 @@ class ViewController: UIViewController {
     }
   }
 
-  private func addContours(forFace face: VisionFace, transform: CGAffineTransform) {
+  private func addContours(forFace face: Face, transform: CGAffineTransform) {
     // Face
     if let faceContour = face.contour(ofType: .face) {
       for point in faceContour.points {
@@ -334,121 +223,6 @@ class ViewController: UIViewController {
     }
   }
 
-  // MARK: Custom Model
-
-  private func runModelInference(with image: UIImage) {
-    DispatchQueue.global(qos: .userInitiated).async {
-      guard let imageData =
-        self.scaledImageData(from: image,
-                             componentsCount: Constants.dimensionComponents.intValue) else {
-                              return
-      }
-      let inputs = ModelInputs()
-      do {
-        // Add the image data to the model input.
-        try inputs.addInput(imageData)
-      } catch let error as NSError {
-        print("Failed to add the image data input with error: \(error.localizedDescription)")
-        return
-      }
-
-      // Run the interpreter for the model with the given inputs.
-      self.modelInterpreter?.run(inputs: inputs, options: self.modelInputOutputOptions) { (outputs, error) in
-        self.removeDetectionAnnotations()
-        guard error == nil, let outputs = outputs else {
-          print("Failed to run the model with error: \(error?.localizedDescription ?? "")")
-          return
-        }
-        self.process(outputs)
-      }
-    }
-  }
-
-  private func process(_ outputs: ModelOutputs) {
-    let outputArrayOfArrays: Any
-    do {
-      // Get the output for the first batch, since `dimensionBatchSize` is 1.
-      outputArrayOfArrays = try outputs.output(index: 0)
-    } catch let error as NSError {
-      print("Failed to process detection outputs with error: \(error.localizedDescription)")
-      return
-    }
-
-    // Get the first output from the array of output arrays.
-    guard let outputNSArray = outputArrayOfArrays as? NSArray,
-      let firstOutputNSArray = outputNSArray.firstObject as? NSArray,
-      var outputArray = firstOutputNSArray as? [NSNumber]
-      else {
-        print("Failed to get the results array from output.")
-        return
-    }
-
-    // Convert the output from quantized 8-bit fixed point format to 32-bit floating point format.
-    outputArray = outputArray.map {
-      NSNumber(value: $0.floatValue / Constants.maxRGBValue)
-    }
-
-    // Create an array of indices that map to each label in the labels text file.
-    var indexesArray = [Int](repeating: 0, count: labels.count)
-    for index in 0..<labels.count {
-      indexesArray[index] = index
-    }
-
-    // Create a zipped array of tuples ("confidence" as NSNumber, "labelIndex" as Int).
-    let zippedArray = zip(outputArray, indexesArray)
-
-    // Sort the zipped array of tuples ("confidence" as NSNumber, "labelIndex" as Int) by confidence
-    // value in descending order.
-    var sortedResults = zippedArray.filter {$0.0.floatValue > 0}.sorted {
-      let confidenceValue1 = ($0 as (NSNumber, Int)).0
-      let confidenceValue2 = ($1 as (NSNumber, Int)).0
-      return confidenceValue1.floatValue > confidenceValue2.floatValue
-    }
-
-    // Resize the sorted results array to match the `topResultsCount`.
-    sortedResults = Array(sortedResults.prefix(Constants.topResultsCount))
-
-    // Create an array of tuples with the results as [("label" as String, "confidence" as Float)].
-    let results = sortedResults.map { (confidence, labelIndex) -> (String, Float) in
-      return (labels[labelIndex], confidence.floatValue)
-    }
-    showResults(results)
-  }
-
-  /// Returns a string representation of the detection results.
-  private func showResults(_ results: [(label: String, confidence: Float)]?) {
-    var resultsText = Constants.failedToDetectObjectsMessage
-    if let results = results {
-      resultsText = results.reduce("") { (resultString, result) -> String in
-        let (label, confidence) = result
-        return resultString + "\(label): \(String(describing: confidence))\n"
-      }
-    }
-    resultsAlertController.message = resultsText
-    resultsAlertController.popoverPresentationController?.sourceRect = self.annotationOverlayView.frame
-    resultsAlertController.popoverPresentationController?.sourceView = self.annotationOverlayView
-    present(resultsAlertController, animated: true, completion: nil)
-    print(resultsText)
-  }
-
-  private func scaledImageData(
-    from image: UIImage,
-    componentsCount: Int = Constants.dimensionComponents.intValue
-    ) -> Data? {
-    let imageWidth = Constants.dimensionImageWidth.doubleValue
-    let imageHeight = Constants.dimensionImageHeight.doubleValue
-    let imageSize = CGSize(width: imageWidth, height: imageHeight)
-    guard let scaledImageData = image.scaledImageData(
-      with: imageSize,
-      componentsCount: componentsCount,
-      batchSize: Constants.dimensionBatchSize.intValue)
-      else {
-        print("Failed to scale image to size: \(imageSize).")
-        return nil
-    }
-    return scaledImageData
-  }
-
   private func drawFrame(_ frame: CGRect, in color: UIColor, transform: CGAffineTransform) {
     let transformedRect = frame.applying(transform)
     UIUtilities.addRectangle(
@@ -459,15 +233,16 @@ class ViewController: UIViewController {
   }
 
   private func drawPoint(_ point: VisionPoint, in color: UIColor, transform: CGAffineTransform) {
-    let transformedPoint = pointFrom(point).applying(transform);
-    UIUtilities.addCircle(atPoint: transformedPoint,
-                          to: annotationOverlayView,
-                          color: color,
-                          radius: Constants.smallDotRadius)
+    let transformedPoint = pointFrom(point).applying(transform)
+    UIUtilities.addCircle(
+      atPoint: transformedPoint,
+      to: annotationOverlayView,
+      color: color,
+      radius: Constants.smallDotRadius)
   }
 
   private func pointFrom(_ visionPoint: VisionPoint) -> CGPoint {
-    return CGPoint(x: CGFloat(visionPoint.x.floatValue), y: CGFloat(visionPoint.y.floatValue))
+    return CGPoint(x: visionPoint.x, y: visionPoint.y)
   }
 
   private func transformMatrix() -> CGAffineTransform {
@@ -479,9 +254,9 @@ class ViewController: UIViewController {
 
     let imageViewAspectRatio = imageViewWidth / imageViewHeight
     let imageAspectRatio = imageWidth / imageHeight
-    let scale = (imageViewAspectRatio > imageAspectRatio) ?
-      imageViewHeight / imageHeight :
-      imageViewWidth / imageWidth
+    let scale =
+      (imageViewAspectRatio > imageAspectRatio)
+      ? imageViewHeight / imageHeight : imageViewWidth / imageWidth
 
     // Image view's `contentMode` is `scaleAspectFit`, which scales the image to fit the size of the
     // image view by maintaining the aspect ratio. Multiple by `scale` to get image's original size.
@@ -513,7 +288,9 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     return Constants.images.count
   }
 
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int)
+    -> String?
+  {
     return Constants.images[row].name
   }
 
@@ -524,7 +301,6 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
   }
 }
 
-
 // MARK: - Fileprivate
 
 fileprivate enum Constants {
@@ -534,36 +310,11 @@ fileprivate enum Constants {
   static let smallDotRadius: CGFloat = 5.0
   static let largeDotRadius: CGFloat = 10.0
   static let detectionNoResultsMessage = "No results returned."
-  static let failedToDetectObjectsMessage = "Failed to detect objects in image."
-  static let labelsFilename = "labels"
-  static let labelsExtension = "txt"
-  static let labelsSeparator = "\n"
-  static let modelExtension = "tflite"
-  static let dimensionBatchSize: NSNumber = 1
-  static let dimensionImageWidth: NSNumber = 224
-  static let dimensionImageHeight: NSNumber = 224
-  static let dimensionComponents: NSNumber = 3
-  static let modelInputIndex: UInt = 0
-  static let localModelFilename = "mobilenet_v1.0_224_quant"
-  static let hostedModelFilename = "mobilenet_v1_224_quant"
-  static let maxRGBValue: Float32 = 255.0
-  static let topResultsCount: Int = 5
-  static let inputDimensions = [
-    dimensionBatchSize,
-    dimensionImageWidth,
-    dimensionImageHeight,
-    dimensionComponents,
-    ]
-  static let modelElementType: ModelElementType = .uInt8
 
   static let images = [
     ImageDisplay(file: "Please_walk_on_the_grass.jpg", name: "Image 1"),
-    ImageDisplay(file: "non-latin.jpg", name: "Image 2"),
-    ImageDisplay(file: "nl2.jpg", name: "Image 3"),
-    ImageDisplay(file: "grace_hopper.jpg", name: "Image 4"),
-    ImageDisplay(file: "tennis.jpg", name: "Image 5"),
-    ImageDisplay(file: "mountain.jpg", name: "Image 6"),
-    ]
+    ImageDisplay(file: "grace_hopper.jpg", name: "Image 2"),
+  ]
 }
 
 struct ImageDisplay {

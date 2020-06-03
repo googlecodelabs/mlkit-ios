@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eS0-IJ-7vf">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eS0-IJ-7vf">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnY-tr-T4s">
-                                <rect key="frame" x="0.0" y="475" width="375" height="192"/>
+                                <rect key="frame" x="0.0" y="455" width="375" height="212"/>
                             </pickerView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="kmJ-E8-cmQ">
-                                <rect key="frame" x="0.0" y="439" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="419" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vMp-oE-vJv">
-                                        <rect key="frame" x="0.0" y="0.0" width="82" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="179.5" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Find Text"/>
                                         <connections>
@@ -33,27 +31,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kms-AF-w9I">
-                                        <rect key="frame" x="98" y="0.0" width="81.5" height="60"/>
+                                        <rect key="frame" x="195.5" y="0.0" width="179.5" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Find Face Contour"/>
                                         <connections>
                                             <action selector="findFaceContourDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ber-QW-6ab"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="UTd-oy-6hv">
-                                        <rect key="frame" x="195.5" y="0.0" width="82" height="60"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Find Text (Cloud)"/>
-                                        <connections>
-                                            <action selector="findTextCloudDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qpJ-1E-3Er"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ZjO-hA-PbB">
-                                        <rect key="frame" x="293.5" y="0.0" width="81.5" height="60"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Find Objects"/>
-                                        <connections>
-                                            <action selector="findObjectsDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CB9-CZ-3aq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -62,7 +44,7 @@
                                 </constraints>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Please_walk_on_the_grass.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="grM-at-suJ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="375"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="grM-at-suJ" secondAttribute="height" multiplier="1:1" id="5WL-S8-lmZ"/>
                                 </constraints>
@@ -99,7 +81,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eS0-IJ-7vf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HDr-H5-cLU">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

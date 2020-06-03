@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2018 Google Inc.
+//  Copyright (c) 2020 Google Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,10 +15,8 @@
 //
 
 import AVFoundation
+import MLKitVision
 import UIKit
-
-import FirebaseMLVision
-
 
 /// Defines UI-related utilitiy methods for vision detection.
 public class UIUtilities {
@@ -30,7 +28,7 @@ public class UIUtilities {
     to view: UIView,
     color: UIColor,
     radius: CGFloat
-    ) {
+  ) {
     let divisor: CGFloat = 2.0
     let xCoord = point.x - radius / divisor
     let yCoord = point.y - radius / divisor
@@ -76,10 +74,11 @@ public class UIUtilities {
 
   public static func imageOrientation(
     fromDevicePosition devicePosition: AVCaptureDevice.Position = .back
-    ) -> UIImage.Orientation {
+  ) -> UIImage.Orientation {
     var deviceOrientation = UIDevice.current.orientation
-    if deviceOrientation == .faceDown || deviceOrientation == .faceUp ||
-      deviceOrientation == .unknown {
+    if deviceOrientation == .faceDown || deviceOrientation == .faceUp
+      || deviceOrientation == .unknown
+    {
       deviceOrientation = currentUIOrientation()
     }
     switch deviceOrientation {
@@ -95,31 +94,6 @@ public class UIUtilities {
       return .up
     @unknown default:
       return .up
-    }
-  }
-
-  public static func visionImageOrientation(
-    from imageOrientation: UIImage.Orientation
-    ) -> VisionDetectorImageOrientation {
-    switch imageOrientation {
-    case .up:
-      return .topLeft
-    case .down:
-      return .bottomRight
-    case .left:
-      return .leftBottom
-    case .right:
-      return .rightTop
-    case .upMirrored:
-      return .topRight
-    case .downMirrored:
-      return .bottomLeft
-    case .leftMirrored:
-      return .leftTop
-    case .rightMirrored:
-      return .rightBottom
-    @unknown default:
-      return .topLeft
     }
   }
 
